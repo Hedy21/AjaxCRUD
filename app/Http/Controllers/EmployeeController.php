@@ -37,4 +37,9 @@ class EmployeeController extends Controller
         $employee = Employee::where($where)->first();
         return Response()->json($employee);
     }
+
+    public function destroy(Request $request){
+        $employee = Employee::where('id',$request->id)->delete();
+        return Response()->json($employee);
+    }
 }
