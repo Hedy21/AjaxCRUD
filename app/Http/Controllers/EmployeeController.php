@@ -31,4 +31,10 @@ class EmployeeController extends Controller
             );
         return Response()->json($employee);
     }
+
+    public function edit(Request $request){
+        $where  = array('id'=> $request->id);
+        $employee = Employee::where($where)->first();
+        return Response()->json($employee);
+    }
 }

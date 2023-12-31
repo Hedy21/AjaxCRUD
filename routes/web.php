@@ -20,4 +20,5 @@ Route::get('/', function () {
 
 Route::get('crud',[EmployeeController::class,'index']);
 Route::post('store',[EmployeeController::class,'store']);
+Route::post('edit',[EmployeeController::class,'edit']);
 

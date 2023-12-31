@@ -101,6 +101,24 @@ function add(){
     $('#employee-modal').modal('show');
     $('#id').val('');
 }
+function editFunc(id){
+    $.ajax({
+        type: "POST",
+        url: "{{ url('edit')}}",
+        data: {id:id},
+        dataType: 'json',
+        success: function(res){
+            console.log(res);
+            $('#EmployeeModal').html("Edit Employee");
+            $('#employee-modal').modal('show');
+            $('#id').val(res.id);
+            $('#name').val(res.name);
+            $('#address').val(res.address);
+            $('#email').val(res.email);
+        }
+    });
+}
+
 $('#EmployeeForm').submit(function(e){
     e.preventDefault();
     var formData = new FormData(this);
@@ -114,6 +132,8 @@ $('#EmployeeForm').submit(function(e){
         success: (data) => {
             console.log(data);
             $('#employee-modal').modal('hide');
+            var oTable = $('#ajax-crud-datatable').dataTable();
+            oTable.fnDraw(false);
             $('#btn-save').html('Submit');
             $('#btn-save').attr("disabled",false);
         },
